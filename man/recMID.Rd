@@ -30,7 +30,10 @@ A reconstructed MID.
  of a compound given its true MID and the fragment ratio.
 }
 \details{
-tbd
+\code{recMID} is basically the inverse function to \code{CorMID}.
+ Providing a specific chemical formula together with information regarding
+ the true MID and r, this function will compute a vector of ion intensities
+ which can be expected in a GC-APCI-MS analysis for this cmpound.
 }
 \examples{
 fml <- "C9H20O3Si2"

@@ -7,7 +7,7 @@
 #'@param d The maximum allowed deviation for each element in vec.
 #'@param prec recision of allowed errors.
 #'@param limits A 2-row matrix with lower and upper boundaries for the result vectors.
-#'@param ... Passed to function \code{seq}. Either by or length.out (see examples).
+#'@param ... Passed to function \code{seq}. Either by or length.out (see examples in test-poss_local.R).
 #'@return A matrix with rowSums\~1 and within the limits defined by vec and d.
 #'@keywords internal
 poss_local <- function(vec=NULL, d=NULL, prec=0.001, limits=NULL, ...) {

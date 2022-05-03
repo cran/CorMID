@@ -7,7 +7,7 @@
 #'  It will break this down into a matrix where the components of the MID constitute
 #'  the rows and the expected relative ion intensities are within the columns.
 #'  The number of exported ion intensities and MID components can be limited
-#'  if numeric values for "nmz" and/or "nbio" provided as attributes with the formula.
+#'  if numeric values for "nmz" and/or "nbio" are provided as parameters.
 #'@param fml The chemical formula of the compound.
 #'@param nbio Provide the number of biological carbon within fml explicitly.
 #'@param nmz Provide the number of measured isotopes of fml explicitly.

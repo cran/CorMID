@@ -100,5 +100,5 @@ CorMID::CorMID(int=int, fml=fml, r=NULL, trace=TRUE, penalize=7)
 }
 }
 \references{
-Lagenhan et al. (2022) Metabolites
+https://doi.org/10.3390/metabo12050408
 }

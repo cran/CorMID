@@ -6,6 +6,7 @@ testthat::test_that(
     testthat::expect_true(identical(dim(out), c(1L,3L)))
 
     out <- CorMID:::poss_local(vec=c(0.5,0.25,0.25), d=0.25, length.out=3)
+    testthat::expect_true(identical(dim(out), c(7L,3L)))
     testthat::expect_true(all(apply(out,1,sum)==1))
 
     out <- CorMID:::poss_local(vec=c(0.5,0.25,0.25), d=0.05, by=0.01)

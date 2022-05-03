@@ -15,7 +15,7 @@ poss_local(vec = NULL, d = NULL, prec = 0.001, limits = NULL, ...)
 
 \item{limits}{A 2-row matrix with lower and upper boundaries for the result vectors.}
 
-\item{...}{Passed to function \code{seq}. Either by or length.out (see examples).}
+\item{...}{Passed to function \code{seq}. Either by or length.out (see examples in test-poss_local.R).}
 }
 \value{
 A matrix with rowSums\~1 and within the limits defined by vec and d.

@@ -26,7 +26,7 @@
 #'@param trace_steps For testing purposes. Print the results of intermediate steps to console.
 #'@param prec Precision of the estimation of MID, set to 1\% as default.
 #'@return Estimated percent representation of each isotopologue measured (corMID).
-#'@references Lagenhan et al. (2022) Metabolites
+#'@references https://doi.org/10.3390/metabo12050408
 #'@examples
 #'# make up some fake measurement data for Pyruvic acid 2TMS with 3 biological carbon
 #'# assuming 10% labelling at M3 and 2 fragments
