@@ -1,17 +1,18 @@
-#'@title FitMID.
-#'@description \code{FitMID} will ...
-#'@param md Measured distribution. Normalized (i.e. sum=1) raw intensity vector.
-#'@param td Theoretical intensity distribution (using function 'CalcTheoreticalMDV').
-#'@param r matrix of considere fragments and their potential occurence.
-#'@param mid_fix May provide a numeric vector used as a given MID. Allows to estimate \code{r} individually.
-#'@param prec Precision of the estimation of MID, set to 1\% as default.
-#'@param trace_steps For testing purposes. Print the results of intermediate steps to console.
-#'@param penalize Numeric exponent penalizing solutions with low M+H occurence. Formula is 1+3*(1-x)^penalty. NA to omit penalizing.
-#'@importFrom stats median
-#'@importFrom utils head
-#'@importFrom plyr ldply alply
-#'@return Fitted MID with attributes.
-#'@keywords internal
+#' @title FitMID.
+#' @description \code{FitMID} will ...
+#' @param md Measured distribution. Normalized (i.e. sum=1) raw intensity vector.
+#' @param td Theoretical intensity distribution (using function 'CalcTheoreticalMDV').
+#' @param r matrix of considere fragments and their potential occurence.
+#' @param mid_fix May provide a numeric vector used as a given MID. Allows to estimate \code{r} individually.
+#' @param prec Precision of the estimation of MID, set to 1\% as default.
+#' @param trace_steps For testing purposes. Print the results of intermediate steps to console.
+#' @param penalize Numeric exponent penalizing solutions with low M+H occurence. Formula is 1+3*(1-x)^penalty. NA to omit penalizing.
+#' @importFrom stats median
+#' @importFrom utils head
+#' @importFrom plyr ldply alply
+#' @return Fitted MID with attributes.
+#' @keywords internal
+#' @noRd
 FitMID <- function(md=NULL, td=NULL, r=NULL, mid_fix=NULL, prec=0.01, trace_steps=FALSE, penalize=NA) {
 
   # potential parameters

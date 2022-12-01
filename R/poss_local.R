@@ -1,15 +1,16 @@
-#'@title poss_local.
-#'@description \code{poss_local} will compute a matrix of possibilities.
-#'@details Within the approximation process we need to check various hypotheses
+#' @title poss_local.
+#' @description \code{poss_local} will compute a matrix of possibilities.
+#' @details Within the approximation process we need to check various hypotheses
 #'  of MID and r combinations. A non-redundant set of posible combinations can
 #'  be computed with this \code{poss_local}.
-#'@param vec The starting vector sum(vec) should be 1.
-#'@param d The maximum allowed deviation for each element in vec.
-#'@param prec recision of allowed errors.
-#'@param limits A 2-row matrix with lower and upper boundaries for the result vectors.
-#'@param ... Passed to function \code{seq}. Either by or length.out (see examples in test-poss_local.R).
-#'@return A matrix with rowSums\~1 and within the limits defined by vec and d.
-#'@keywords internal
+#' @param vec The starting vector sum(vec) should be 1.
+#' @param d The maximum allowed deviation for each element in vec.
+#' @param prec recision of allowed errors.
+#' @param limits A 2-row matrix with lower and upper boundaries for the result vectors.
+#' @param ... Passed to function \code{seq}. Either by or length.out (see examples in test-poss_local.R).
+#' @return A matrix with rowSums\~1 and within the limits defined by vec and d.
+#' @keywords internal
+#' @noRd
 poss_local <- function(vec=NULL, d=NULL, prec=0.001, limits=NULL, ...) {
   # helper
   fnc_lim <- function(lp=NULL, r=r) {

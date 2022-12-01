@@ -33,7 +33,7 @@ A reconstructed MID.
 \code{recMID} is basically the inverse function to \code{CorMID}.
  Providing a specific chemical formula together with information regarding
  the true MID and r, this function will compute a vector of ion intensities
- which can be expected in a GC-APCI-MS analysis for this cmpound.
+ which can be expected in a GC-APCI-MS analysis for this compound.
 }
 \examples{
 fml <- "C9H20O3Si2"

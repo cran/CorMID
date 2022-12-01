@@ -14,31 +14,44 @@
 
 <title>CorMID</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -50,55 +63,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -107,13 +119,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -125,7 +144,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -141,33 +340,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>Please load the <code>CorMID</code> package before running the examples within this document.</p>
+<p>Please load the <code>CorMID</code> package before running the
+examples within this document.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CorMID)</span></code></pre></div>
 <div id="the-cormid-function-to-correct-superimposed-mass-isotopologue-distributions-of-13c-labelled-molecules-in-gc-apci-ms-flux-experiments" class="section level1">
-<h1>The CorMID function to correct superimposed mass isotopologue distributions of <sup>13</sup>C labelled molecules in GC-APCI-MS flux experiments</h1>
-<p>The package provides as the main functionality function <code>CorMID</code> which will estimate the fragment distribution, <em>r</em>, and the mass isotopologue distribution, <em>M</em>, for a numeric vector of measured ion intensities originating from a compound analyzed by GC-APCI-MS (see below).</p>
+<h1>The CorMID function to correct superimposed mass isotopologue
+distributions of <sup>13</sup>C labelled molecules in GC-APCI-MS flux
+experiments</h1>
+<p>The package provides the main function <code>CorMID</code> which will
+estimate the fragment distribution, <em>r</em>, and the mass
+isotopologue distribution, <em>M</em>, for a numeric vector of measured
+ion intensities originating from a compound analyzed by GC-APCI-MS (see
+below).</p>
 <div id="definitions" class="section level2">
 <h2>Definitions</h2>
 <div id="gas-chromatography-gc" class="section level3">
 <h3>Gas chromatography (GC)</h3>
-<p>Gas chromatography is an analytical method to separate volatile compounds.</p>
+<p>Gas chromatography is an analytical method to separate volatile
+compounds.</p>
 </div>
 <div id="atmospheric-pressure-chemical-ionization-apci" class="section level3">
 <h3>Atmospheric pressure chemical ionization (APCI)</h3>
-<p>Atmospheric pressure chemical ionization (APCI) is an ionization method used in mass spectrometry which utilizes gas-phase ion-molecule reactions at atmospheric pressure (10<sup>5</sup> Pa) to convert molecules separated by GC into ions which can be analyzed by mass spectrometry.</p>
+<p>Atmospheric pressure chemical ionization (APCI) is an ionization
+method used in mass spectrometry which utilizes gas-phase ion-molecule
+reactions at atmospheric pressure (10<sup>5</sup> Pa) to convert
+molecules separated by GC into ions which can be analyzed by mass
+spectrometry.</p>
 </div>
 <div id="mass-spectrometry-ms" class="section level3">
 <h3>Mass spectrometry (MS)</h3>
-<p>Mass spectrometry is an analytical method to separate ions due to their mass, more specifically due to their difference ind mass to charge ratio.</p>
+<p>Mass spectrometry is an analytical method to separate ions due to
+their mass, more specifically due to their difference in mass to charge
+ratio.</p>
 </div>
 <div id="mass-isotopologue-distributions-mid" class="section level3">
 <h3>Mass Isotopologue Distributions (MID)</h3>
-<p>Compounds which have the same sum formula are termed isomers. Isomers can be structural, i.e. the arrangement of the atoms in the molecules are different. All isomers of a specific sum formula which are structurally identical and differ only in their isotopic composition are termed isotopomers. Here, again, several isotopomers may share the same sum formula in which case they are termed isotopologues.</p>
-<p>Example: C<sub>2</sub>H<sub>6</sub>O would be a sum formula, with ethanol CH<sub>3</sub>-CH<sub>2</sub>-OH being one structural isomer of C<sub>2</sub>H<sub>6</sub>O. The molecules <sup>13</sup>CH<sub>3</sub>-CH<sub>2</sub>-OH and CH<sub>3</sub>-<sup>13</sup>CH<sub>2</sub>-OH would be two isotopomers of ethanol. Together, they form one of three possible carbon isotopologues of ethanol, the M1 isotopologue with sum formula <sup>13</sup>C<sup>12</sup>CH<sub>6</sub>O. The corresponding M2 isotopologue being <sup>13</sup>C<sub>2</sub>H<sub>6</sub>O. In mass spectrometry we would measure the mass isotopologue distribution of C<sub>2</sub>H<sub>6</sub>O, more specifically of the structural isomer ethanol, by quantifiying 3 different ion masses for M0, M1 and M2. This vector is termed MID.</p>
+<p>Compounds which have the same sum formula are termed isomers. Isomers
+can be structural, <em>i.e.</em> the arrangement of the atoms in the
+molecules are different. All isomers of a specific sum formula which are
+structurally identical and differ only in their isotopic composition are
+termed isotopomers. Here, again, several isotopomers may share the same
+sum formula in which case they are termed isotopologues.</p>
+<p>Example: C<sub>2</sub>H<sub>6</sub>O would be a sum formula, with
+ethanol CH<sub>3</sub>-CH<sub>2</sub>-OH being one structural isomer of
+C<sub>2</sub>H<sub>6</sub>O. The molecules
+<sup>13</sup>CH<sub>3</sub>-CH<sub>2</sub>-OH and
+CH<sub>3</sub>-<sup>13</sup>CH<sub>2</sub>-OH would be two isotopomers
+of ethanol. Together, these two isotopomers represent one of three
+possible carbon isotopologues of ethanol, the M1 isotopologue with sum
+formula <sup>13</sup>C<sup>12</sup>CH<sub>6</sub>O. The corresponding M2
+isotopologue being <sup>13</sup>C<sub>2</sub>H<sub>6</sub>O. In mass
+spectrometry we would measure the mass isotopologue distribution of
+C<sub>2</sub>H<sub>6</sub>O, more specifically of the structural isomer
+ethanol, by quantifying 3 different ion masses for M0, M1 and M2. This
+vector is termed MID.</p>
 </div>
 <div id="helper-functions" class="section level3">
 <h3>Helper functions</h3>
-<p>Within the main function <code>CorMID</code> I make use of several helper functions, i.e. <code>CountChemicalElements</code> and <code>CalcTheoreticalMDV</code>. The first one simply counts the digit following a certain letter in a chemical sum formula. Here, we use it to determine the number of carbon, silicon and sulfor atoms (neglecting nitrogen, as the <sup>15</sup>N isotope is of low abundance). As the anticipated user will probably work on derivatized compounds, I included two additional letters to the chemical alphabet, <strong>T</strong> for TMS and <strong>M</strong> for a MEOX substitution. In consequence for compound Glucose (5TMS 1MEOX) we would count:</p>
+<p>Within the main function <code>CorMID</code> we make use of several
+helper functions, <em>i.e.</em> <code>CountChemicalElements</code> and
+<code>CalcTheoreticalMDV</code>. The first one simply counts the digit
+following a certain letter in a chemical sum formula. Here, we use it to
+determine the number of carbon, silicon and sulfur atoms (neglecting
+nitrogen, as the <sup>15</sup>N isotope is of low abundance). As the
+anticipated user will probably work on derivatized compounds, two
+additional letters were included to the chemical alphabet,
+<strong>T</strong> for TMS and <strong>M</strong> for a MEOX
+substitution. In consequence for compound Glucose (5TMS 1MEOX) we would
+count:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fml <span class="ot">&lt;-</span> <span class="st">&quot;C6H12O6T5M1&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">CountChemicalElements</span>(<span class="at">x =</span> fml)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  C  H  O  T  M </span></span>
@@ -175,8 +415,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">CountChemicalElements</span>(<span class="at">x =</span> fml, <span class="at">ele=</span><span class="fu">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;Si&quot;</span>,<span class="st">&quot;T&quot;</span>,<span class="st">&quot;Cl&quot;</span>))</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  C Si  T Cl </span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6  0  5  0</span></span></code></pre></div>
-<p>and receive as output a named vector for all present elements or only a selection of elements as specified by parameter <em>ele</em>.</p>
-<p>The elements with a significant amount of natural occuring isotopes are relevant to calculate the theoretical mass distribution vector (or rather matrix respectively) of the compound. In the above example this is effectively Carbon and Silicon. As we have 5 TMS groups, we need to consider in total 21 C and 5 Si in our calculations:</p>
+<p>and receive as output a named vector for all present elements or only
+a selection of elements as specified by parameter <em>ele</em>.</p>
+<p>The elements with a significant amount of natural occurring isotopes
+are relevant to calculate the theoretical mass distribution vector (or
+rather matrix respectively) of the compound. In the above example this
+is effectively carbon and silicon. As we have 5 TMS groups, we need to
+consider in total 21 C and 5 Si in our calculations:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fml <span class="ot">&lt;-</span> <span class="st">&quot;C21Si5&quot;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>td <span class="ot">&lt;-</span> <span class="fu">CalcTheoreticalMDV</span>(<span class="at">fml=</span>fml)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(td,<span class="dv">4</span>)</span>
@@ -188,7 +433,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M4 0.0000 0.0000 0.0000 0.0000 0.5880 0.2600 0.1519</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M5 0.0000 0.0000 0.0000 0.0000 0.0000 0.6987 0.3013</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M6 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 1.0000</span></span></code></pre></div>
-<p>The first row of the matrix (M0) gives the relative amounts of all potential isotopes for C<sub>21</sub>Si<sub>5</sub> assuming natural abundance conditions. The second row (M1) shows the relative amounts for isotopologue M1 (containing at least one <sup>13</sup>C). The final row (M6) shows the relative amounts when all biological carbon atoms are assumed to be <sup>13</sup>C. The amount of biological carbon is estimated based on the amount of Si within the function. This might be overwritten by function parameters specifying the number of C of biological origin <em>nbio</em> and the number of measured ion signals above the detection limit <em>nmz</em>:</p>
+<p>The first row of the matrix (M0) gives the relative amounts of all
+potential isotopes for C<sub>21</sub>Si<sub>5</sub> assuming natural
+abundance conditions. The second row (M1) shows the relative amounts for
+isotopologue M1 (containing at least one <sup>13</sup>C). The final row
+(M6) shows the relative amounts when all biological carbon atoms are
+assumed to be <sup>13</sup>C. The amount of biological carbon is
+estimated based on the amount of Si within the function. This might be
+overwritten by function parameters specifying the number of C of
+biological origin <em>nbio</em> and the number of measured ion signals
+above the detection limit <em>nmz</em>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">CalcTheoreticalMDV</span>(<span class="at">fml=</span>fml, <span class="at">nbio=</span><span class="dv">21</span>, <span class="at">nmz=</span><span class="dv">21</span>)[<span class="sc">-</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">19</span>),<span class="sc">-</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">19</span>)],<span class="dv">4</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       M+0    M+1    M+2    M+3  M+19   M+20   M+21</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M0  0.529 0.2575 0.1475 0.0471 0.000 0.0000 0.0000</span></span>
@@ -198,7 +452,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M19 0.000 0.0000 0.0000 0.0000 0.678 0.1867 0.1352</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M20 0.000 0.0000 0.0000 0.0000 0.000 0.7910 0.2090</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M21 0.000 0.0000 0.0000 0.0000 0.000 0.0000 1.0000</span></span></code></pre></div>
-<p>Further, the package contains the convenience function <code>recMID</code> to reconstruct a measured MID based on a given <em>corMID,</em> <em>r</em> and sum formula. <code>recMID</code> returns an object of the similarly named class to allow easy visualization.</p>
+<p>Further, the package contains the convenience function
+<code>recMID</code> to reconstruct a measured MID based on a given
+<em>corMID,</em> <em>r</em> and sum formula. <code>recMID</code> returns
+an object of the similarly named class to allow easy visualization.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fml <span class="ot">&lt;-</span> <span class="st">&quot;C9H20O3Si2&quot;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mid <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;M+H&quot;</span><span class="ot">=</span><span class="fl">0.8</span>, <span class="st">&quot;M-H&quot;</span><span class="ot">=</span><span class="fl">0.1</span>, <span class="st">&quot;M+H2O-CH4&quot;</span><span class="ot">=</span><span class="fl">0.1</span>)</span>
@@ -211,19 +468,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;recMID&quot;</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rMID)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>The spectrum shown in the above plot would be measured for lactic acid (2 TMS), assuming 10% of the fully labeled isotopologue M3, natural abundance, 10% proton loss and 10% of [M+H]+H<sub>2</sub>O-CH<sub>4</sub>. It is the task of <code>CorMID</code> to disentangle this overlay of superimposed MID and estimate both, <em>corMID</em> and <em>r</em>.</p>
+<p>The spectrum shown in the above plot would be measured for lactic
+acid (2 TMS), assuming 10% of the fully labeled isotopologue M3, natural
+abundance, 10% proton loss and 10% of
+[M+H]+H<sub>2</sub>O-CH<sub>4</sub>. It is the task of
+<code>CorMID</code> to disentangle this overlay of superimposed MIDs and
+estimate both, <em>corMID</em> and <em>r</em>.</p>
 </div>
 </div>
 <div id="main-function-cormid" class="section level2">
 <h2>Main function <code>CorMID</code></h2>
 <div id="idea" class="section level3">
 <h3>Idea</h3>
-<p>The problem in GC-APCI-MS that we try to overcome is the formation of fragments forming superimposed MIDs. The ones we identified so far are [M+H], [M+], [M+H]-H<sub>2</sub> and [M+H]+H<sub>2</sub>O-CH<sub>4</sub>. If we assume [M+H] to be generally the most abundant and hence use it as our fix point (base MID, shift = 0), than we observe superimposed MIDs starting at -2, -1 and +2 relative to [M+H] for [M+], [M+H]-H<sub>2</sub> and [M+H]+H<sub>2</sub>O-CH<sub>4</sub> respectively.</p>
-<p>The basic idea of the correction is that we measure a superimposed/composite MID of one to several fragments all derived from the same base MID. This base MID (or correct MID, <em>corMID</em>) is exactly what we are looking for. Estimating it is complicated because we do not know the distribution of fragments, i.e. the amount of the individually occurring fragments or their ratios to each other respectively. Hence, we have to estimate <em>corMID</em> and the ratio vector <em>r</em> giving the distribution of present fragments, which together represent our measurement data optimally.</p>
+<p>The problem in GC-APCI-MS that we try to overcome is the formation of
+fragments forming superimposed MIDs. The ones we identified so far are
+[M+H], [M+], [M+H]-H<sub>2</sub> and
+[M+H]+H<sub>2</sub>O-CH<sub>4</sub>. If we assume [M+H] to be generally
+the most abundant and hence use it as our fix point (base MID, shift =
+0), than we observe superimposed MIDs starting at -2, -1 and +2 relative
+to [M+H] for [M+], [M+H]-H<sub>2</sub> and
+[M+H]+H<sub>2</sub>O-CH<sub>4</sub> respectively.</p>
+<p>The basic idea of the correction is that we measure a
+superimposed/composite MID of one to several fragments all derived from
+the same base MID. This base MID (or correct MID, <em>corMID</em>) is
+exactly what we are looking for. Estimating the <em>corMID</em> is
+complicated because we do not know the distribution of fragments,
+<em>i.e.</em> the amount of the individually occurring fragments or
+their ratios to each other respectively. Hence, we have to estimate
+<em>corMID</em> and the ratio vector <em>r</em> giving the distribution
+of present fragments, which together represent our measurement data
+optimally.</p>
 </div>
 <div id="example" class="section level3">
 <h3>Example</h3>
-<p>Lets start with an artificial Glucose spectrum where 10% is M6 labeled:</p>
+<p>Lets start with an artificial Glucose spectrum where 10% is M6
+labeled:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fml <span class="ot">&lt;-</span> <span class="st">&quot;C21Si5&quot;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>td1 <span class="ot">&lt;-</span> <span class="fu">CalcTheoreticalMDV</span>(<span class="at">fml =</span> fml, <span class="at">nbio=</span><span class="dv">6</span>, <span class="at">nmz=</span><span class="dv">8</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bMID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="fl">0.1</span>)</span>
@@ -231,7 +510,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(md1,<span class="dv">4</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    M+0    M+1    M+2    M+3    M+4    M+5    M+6    M+7    M+8 </span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.4761 0.2318 0.1327 0.0424 0.0132 0.0030 0.0606 0.0253 0.0149</span></span></code></pre></div>
-<p>to obtain the measure distribution <strong>md1</strong> which is our measured intensity values expressed relative. Please note that the measured MID contains additional peaks at M+7 and M+8, being the natural abundant isotopes of carbon atomes attached during derivatization. Now we may use <code>CorMID</code> to decompose this back:</p>
+<p><strong>md1</strong> represents the measured isotopologue
+distribution which is our measured intensity values normalized to the
+vector sum. Please note that the measured MID contains additional peaks
+at M+7 and M+8, being the natural abundant isotopes of carbon atoms
+attached during derivatization. Now we may use function
+<code>CorMID</code> to decompose this back:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CorMID</span>(<span class="at">int=</span>md1, <span class="at">fml=</span>fml, <span class="at">r=</span><span class="fu">unlist</span>(<span class="fu">list</span>(<span class="st">&quot;M+H&quot;</span><span class="ot">=</span><span class="dv">1</span>)))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       M0       M1       M2       M3       M4       M5       M6 </span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 89.84375  0.00000  0.00000  0.00000  0.00000  0.00000 10.15625 </span></span>
@@ -245,8 +529,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;fixed&quot;</span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;mid_status&quot;)</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;estimated&quot;</span></span></code></pre></div>
-<p>Notice, that we allowed only [M+H] to be present in option <em>r</em>. The result is a labeled vector representing the corrected or baseMID together with information on the fitting error <em>err</em> and regarding the options used during the function call as attributes <em>ratio</em>, <em>ratio_status</em> and <em>mid_status</em> with <em>mid</em> being estimated and <em>ratio</em> being fixed during the function call.</p>
-<p>We could achieve something similar testing for all currently defined fragments by omitting the <em>r</em> option:</p>
+<p>Notice, that we allowed only [M+H] to be present in option
+<em>r</em>. The result is a labeled vector representing the corrected or
+base MID together with information on the fitting error <em>err</em> and
+regarding the options used during the function call as attributes
+<em>ratio</em>, <em>ratio_status</em> and <em>mid_status</em> with
+<em>mid</em> being estimated and <em>ratio</em> being fixed during the
+function call.</p>
+<p>We could achieve something similar testing for all currently defined
+fragments by omitting the <em>r</em> option:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CorMID</span>(<span class="at">int=</span>md1, <span class="at">fml=</span>fml)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       M0       M1       M2       M3       M4       M5       M6 </span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 89.84375  0.00000  0.00000  0.00000  0.00000  0.00000 10.15625 </span></span>
@@ -260,7 +551,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;estimated&quot;</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; attr(,&quot;mid_status&quot;)</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;estimated&quot;</span></span></code></pre></div>
-<p>We essentially get the same result as before (except for <em>ratio</em> related attributes) because there is no superimposition in our test data. Now lets generate more difficult composite data to be fit by including a 20% proton loss…</p>
+<p>Here, we essentially get the same result as before (except for
+<em>ratio</em> related attributes) because there is no superimposition
+in our test data. Now lets generate more difficult composite data to be
+fit by including a 20% proton loss…</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>md2 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">list</span>(<span class="st">&quot;M-1&quot;</span><span class="ot">=</span><span class="dv">0</span>,<span class="fl">0.8</span><span class="sc">*</span>md1)) <span class="sc">+</span> <span class="fu">c</span>(<span class="fl">0.2</span><span class="sc">*</span>md1,<span class="dv">0</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(md2,<span class="dv">4</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    M-1    M+0    M+1    M+2    M+3    M+4    M+5    M+6    M+7    M+8 </span></span>
@@ -281,10 +575,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;estimated&quot;</span></span></code></pre></div>
 <p>which is pretty close to the truth. :)</p>
 </div>
-<div id="function-details" class="section level3">
-<h3>Function Details</h3>
-<p>Let’s look into the details of the function. Appart from some sanity checks and data preparation steps done by the wrapper function <code>CorMID</code> the main idea is to model a theoretical distribution based on a provided sum formula and fit a base MID and fragment ratios according to measurement data by function <code>FitMID</code> which is discussed in the following. The approach is brute force using two nested estimators for <em>r</em> and <em>corMID</em> seperately. It builds on the idea to test a crude grid of parameters first, identify the best solution and iteratively approache the true value by minimizing the grid.</p>
-<p>The grid is set by an internal function <code>poss_local</code>. Basically, if we have a two carbon molecule we expect a <em>corMID</em> of length=3 {M0, M1, M2}. Let’s assume that <em>corMID</em> = {0.9, 0, 0.1}. Using a wide grid we would than test the following possibilities:</p>
+<div id="more-function-details" class="section level3">
+<h3>More Function Details</h3>
+<p>Let’s look into the details of the function. Apart from some sanity
+checks and data preparation steps done by the wrapper function
+<code>CorMID</code> the main idea is to model a theoretical distribution
+based on a provided sum formula and fit a base MID and fragment ratios
+according to measurement data by function <code>FitMID</code> which is
+discussed in the following. The approach is brute force using two nested
+estimators for <em>r</em> and <em>corMID</em> separately. It builds on
+the idea to test a crude grid of parameters first, identify the best
+solution and use an iterative method minimizing the grid to approach the
+true value.</p>
+<p>The grid is set by an internal function <code>poss_local</code>.
+Basically, if we have a two carbon molecule we expect a <em>corMID</em>
+of length=3 {M0, M1, M2}. Let’s assume that <em>corMID</em> = {0.9, 0,
+0.1}. Using a wide grid we would than test the following
+possibilities:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>CorMID<span class="sc">:::</span><span class="fu">poss_local</span>(<span class="at">vec=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), <span class="at">d=</span><span class="fl">0.5</span>, <span class="at">length.out=</span><span class="dv">3</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Var1 Var2 Var3</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   1.0  0.0  0.0</span></span>
@@ -293,7 +600,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11  0.5  0.0  0.5</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13  0.0  0.5  0.5</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19  0.0  0.0  1.0</span></span></code></pre></div>
-<p>and identify {1, 0, 0} as best match after subjecting to a testing function. We decrease the step size of the grid by 50% and test in the next iteration:</p>
+<p>and identify {1, 0, 0} as best match after subjecting to a testing
+function. We decrease the step size of the grid by 50% and test in the
+next iteration:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CorMID<span class="sc">:::</span><span class="fu">poss_local</span>(<span class="at">vec=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">d=</span><span class="fl">0.25</span>, <span class="at">length.out=</span><span class="dv">3</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Var1  Var2  Var3</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  1.000 0.000 0.000</span></span>
@@ -302,10 +611,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 0.875 0.000 0.125</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 0.750 0.125 0.125</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 0.750 0.000 0.250</span></span></code></pre></div>
-<p>and will get closer to the truth and find {0.875, 0, 0.125} to give the lowest error.</p>
-<p>In summary, using this approach we can approximate the optimal vectors of <em>corMID</em> and <em>r</em> in a finite number of iterations to reach a desired precision &lt;0.1%. We can nest MID fitting inside ratio fitting and thereby do both in parallel.</p>
-<p>The error function currently employed is simply the square root of the summed squared errors, comparing the provided measurement data and a reconstructed MID based on a specific <em>corMID</em> and <em>r</em>.</p>
+<p>and will get closer to the truth and find {0.875, 0, 0.125} to give
+the lowest error.</p>
+<p>In summary, using this approach we can approximate the optimal
+vectors of <em>corMID</em> and <em>r</em> in a finite number of
+iterations to reach a desired precision &lt;0.1%. We can nest MID
+fitting inside ratio fitting and thereby do both in parallel.</p>
+<p>The error function currently employed is simply the square root of
+the summed squared errors, comparing the provided measurement data and a
+reconstructed MID based on a specific <em>corMID</em> and
+<em>r</em>.</p>
 </div>
+</div>
+<div id="wrap-up" class="section level2">
+<h2>Wrap up</h2>
+<p>Thanks for following till the end. I hope this framework is helpful
+for you.</p>
 </div>
 </div>
 

@@ -24,7 +24,7 @@ OR a named numeric giving relative amounts of fragments
 OR NULL (all known fragments will  be estimated)
 OR a 2-row matrix giving the lower and upper allowed ratio (see examples).}
 
-\item{penalize}{Numeric exponent penalizing solutions with low M+H occurence. Formula is 1+3*(1-x)^penalty. NA to omit penalizing.}
+\item{penalize}{Numeric exponent penalizing solutions with low M+H occurrence. Formula is 1+3*(1-x)^penalty. NA to omit penalizing.}
 
 \item{mid_fix}{May provide a numeric vector used as a given MID. Allows to estimate \emph{r} individually.}
 
@@ -45,11 +45,11 @@ Let's assume we measured the ion intensities of all 3 isotopes of an
  We may calculate the enrichment \strong{E} out of this data, i.e. the relative proportion
  of 13C vs total carbon which will amount to about 1.1\% (the natural 13C abundance)
  under standard conditions.
- The equvivalent corMID vector would be {1,0,0}, indicating that the non-labeled
- isotopologue (where non-labeled means non-labled above the natural 1.1\%)
+ The equivalent corMID vector would be {1,0,0}, indicating that the non-labeled
+ isotopologue (where non-labeled means non-labeled above the natural 1.1\%)
  is the only component observed.
- During a labelling experiment we may change the measurement values in different
- ways (either labelling only one carbon or both), which potentially can translate
+ During a labeling experiment we may change the measurement values in different
+ ways (either labeling only one carbon or both), which potentially can translate
  into similar values for \strong{E} being larger 1.1\%.
  The MIDs will provide additional information about the isotopologue fraction
  which gave rise to the observed \strong{E}'s (cf. examples). The \emph{r} parameter
@@ -57,7 +57,7 @@ Let's assume we measured the ion intensities of all 3 isotopes of an
 }
 \examples{
 # make up some fake measurement data for Pyruvic acid 2TMS with 3 biological carbon
-# assuming 10\% labelling at M3 and 2 fragments
+# assuming 10\% labeling at M3 and 2 fragments
 fml <- "C9H20O3Si2"
 mid <- c(0.9,0,0,0.1)
 r <- unlist(list("M+H"=0.8, "M+H2O-CH4"=0.2))
@@ -100,5 +100,5 @@ CorMID::CorMID(int=int, fml=fml, r=NULL, trace=TRUE, penalize=7)
 }
 }
 \references{
-https://doi.org/10.3390/metabo12050408
+<doi:10.3390/metabo12050408>
 }

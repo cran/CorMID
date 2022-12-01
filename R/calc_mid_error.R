@@ -1,10 +1,11 @@
-#'@title calc_mid_error.
-#'@description \code{calc_mid_error} will compute the error of a theoretical and a estimated mid.
-#'@param md Normalized measured intensities
-#'@param reconstructed_mid A reconstructed MID based on a true MID and a theoretical distribution.
-#'@param best_r A named numeric vector of fragment ratios.
-#'@return A numeric vector of length(x).
-#'@keywords internal
+#' @title calc_mid_error.
+#' @description \code{calc_mid_error} will compute the error of a theoretical and a estimated mid.
+#' @param md Normalized measured intensities
+#' @param reconstructed_mid A reconstructed MID based on a true MID and a theoretical distribution.
+#' @param best_r A named numeric vector of fragment ratios.
+#' @return A numeric vector of length(x).
+#' @keywords internal
+#' @noRd
 calc_mid_error <- function(md=NULL, reconstructed_mid=NULL, best_r=NULL) {
   known_frags <- unlist(list("M+H"=0,"M+"=-1,"M-H"=-2,"M+H2O-CH4"=+2))
   length_md <- length(md)

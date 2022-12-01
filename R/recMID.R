@@ -4,7 +4,7 @@
 #'@details \code{recMID} is basically the inverse function to \code{CorMID}.
 #'  Providing a specific chemical formula together with information regarding
 #'  the true MID and r, this function will compute a vector of ion intensities
-#'  which can be expected in a GC-APCI-MS analysis for this cmpound.
+#'  which can be expected in a GC-APCI-MS analysis for this compound.
 #'@param mid A numeric vector with sum=1 and length of C atoms +1.
 #'@param r Fragment ratios. A numeric vector with sum=1.
 #'@param fml A compound formula.
