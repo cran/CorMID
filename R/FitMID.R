@@ -18,23 +18,23 @@ FitMID <- function(md=NULL, td=NULL, r=NULL, mid_fix=NULL, prec=0.01, trace_step
   # potential parameters
   step_increment = 0.5 # by how much is step reduced every time d2=d1*step_increment
   known_frags <- unlist(list("M+H"=0,"M+"=-1,"M-H"=-2,"M+H2O-CH4"=+2))
-  if (all(r[1,]==0) & all(r[2,]==1)) limits <- NULL else limits <- r
-
-  # set up r_fixed for internal use
-  r_fixed <- ifelse(all(apply(r,2,diff)==0), TRUE, FALSE)
+  if (prod(dim(r))>1 && all(r[1,]==0) & all(r[2,]==1)) limits <- NULL else limits <- r
 
   # default return value
   if (sum(md)==0) {
-    out <- rep(NA, nrow(td))
-    names(out) <- row.names(td)
+    out <- rep(NA, ifelse(is.null(td), length(md), nrow(td)))
+    if (is.null(td)) names(out) <- row.names(td) else names(out) <- names(md)
     attr(out, "err") <- unlist(list("err"=NA))
     if (prod(dim(r))>1) attr(out, "ratio") <- apply(r,2,stats::median)/sum(apply(r,2,stats::median)) else attr(out, "ratio") <- r
-    attr(out, "ratio_status") <- ifelse(r_fixed, "fixed", "estimated")
+    attr(out, "ratio_status") <- ifelse(prod(dim(r))>1 && all(apply(r,2,diff)==0), "fixed", "estimated")
     attr(out, "mid_status") <- ifelse(!is.null(mid_fix), "fixed", "estimated")
     return(out)
   }
 
-# establish starting parameters and stepsize...
+  # set up r_fixed for internal use
+  r_fixed <- ifelse(all(apply(r,2,diff)==0), TRUE, FALSE)
+
+  # establish starting parameters and stepsize...
   # ...for mid
   if (!is.null(mid_fix)) {
     mid_start <- mid_fix; names(mid_start) <- rownames(td)
@@ -92,7 +92,12 @@ FitMID <- function(md=NULL, td=NULL, r=NULL, mid_fix=NULL, prec=0.01, trace_step
       tmp_print[,1:length(mid_start)] <- round(100*tmp_print[,1:length(mid_start)],2)
       tmp_print <- cbind(tmp_print, w_m_errs)
       print(utils::head(tmp_print[order(w_m_errs),]))
-      selected_value <- readline(prompt="Type [row_number+enter] to continue stepwise or [enter] without any number to continue to end:")
+      # the interactive statement is required to allow a testthat function for this part of FitMID
+      if (interactive()) {
+        selected_value <- readline(prompt="Type [row_number+enter] to continue stepwise or [enter] without any number to continue to end:")
+      } else {
+        selected_value <- ""
+      }
       if (selected_value=="") {
         trace_steps <- FALSE
         mid_start <- mid_local[which.min(w_m_errs),]
