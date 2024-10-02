@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -14,7 +14,7 @@ CountChemicalElements(x = fml)
 ## ----CountChemicalElements2---------------------------------------------------
 CountChemicalElements(x = fml, ele = c("C", "Si", "T", "Cl"))
 
-## ---- echo=FALSE, ShowNaturalIsotopeAbundance---------------------------------
+## ----echo=FALSE, ShowNaturalIsotopeAbundance----------------------------------
 structure(list(
   element = c("H", "H", "C", "C", "O", "O", "O", "Si", "Si", "Si"), 
   isotope = c("1H", "2H", "12C", "13C", "16O", "17O", "18O", "28Si", "29Si", "30Si"), 
