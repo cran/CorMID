@@ -9,10 +9,10 @@ library(CorMID)
 
 ## ----CountChemicalElements----------------------------------------------------
 fml <- "C6H12O6T5M1"
-CountChemicalElements(x = fml)
+CorMID::CountChemicalElements(x = fml)
 
 ## ----CountChemicalElements2---------------------------------------------------
-CountChemicalElements(x = fml, ele = c("C", "Si", "T", "Cl"))
+CorMID::CountChemicalElements(x = fml, ele = c("C", "Si", "T", "Cl"))
 
 ## ----echo=FALSE, ShowNaturalIsotopeAbundance----------------------------------
 structure(list(
@@ -25,11 +25,11 @@ structure(list(
 
 ## ----CalcTheoreticalMDV1------------------------------------------------------
 fml <- "C21Si5"
-td <- CalcTheoreticalMDV(fml = fml)
+td <- CorMID::CalcTheoreticalMDV(fml = fml)
 round(td, 4)
 
 ## ----CalcTheoreticalMDV2------------------------------------------------------
-round(CalcTheoreticalMDV(fml = fml, nbio = 21, nmz = 21)[-(5:19), -(5:19)], 4)
+round(CorMID::CalcTheoreticalMDV(fml = fml, nbio = 21, nmz = 21)[-(5:19), -(5:19)], 4)
 
 ## ----recMID-------------------------------------------------------------------
 fml <- "C9H20O3Si2"
@@ -41,16 +41,16 @@ plot(rMID)
 
 ## ----CorMID1------------------------------------------------------------------
 fml <- "C21Si5"
-td1 <- CalcTheoreticalMDV(fml = fml, nbio = 6, nmz = 8)
+td1 <- CorMID::CalcTheoreticalMDV(fml = fml, nbio = 6, nmz = 8)
 bMID <- c(0.9, rep(0, 5), 0.1)
 md1 <- apply(td1*bMID, 2, sum)
 round(md1, 4)
 
 ## ----CorMID2------------------------------------------------------------------
-CorMID(int=md1, fml=fml, r=unlist(list("M+H"=1)))
+CorMID::CorMID(int=md1, fml=fml, r="M+H")
 
 ## ----CorMID3------------------------------------------------------------------
-CorMID(int=md1, fml=fml)
+CorMID::CorMID(int=md1, fml=fml)
 
 ## ----CorMID4------------------------------------------------------------------
 md2 <- unlist(list("M-1" = 0, 0.8*md1)) + c(0.2*md1, 0)
@@ -62,10 +62,10 @@ bMID <- c(0.9, rep(0, 5), 0.1)
 r <- list("M+H" = 0.8, "M+" = 0.2)
 rMID <- CorMID::recMID(mid = bMID, r = r, fml = fml)
 round(rMID, 4)
-plot(rMID, ylim=c(0,0.45))
+plot(rMID, ylim=c(0, 0.45))
 
 ## ----CorMID5------------------------------------------------------------------
-CorMID(int=md2, fml=fml)
+CorMID::CorMID(int=md2, fml=fml)
 
 ## ----poss_local_demo1---------------------------------------------------------
 CorMID:::poss_local(vec=c(0.5,0.5,0.5), d=0.5, length.out=3)

@@ -50,13 +50,13 @@ Within the main function `CorMID` we make use of several helper functions, *i.e.
 
 ```{r CountChemicalElements}
 fml <- "C6H12O6T5M1"
-CountChemicalElements(x = fml)
+CorMID::CountChemicalElements(x = fml)
 ```
 
 and receive as output a named vector for all present elements. Specifying parameter *ele*, we can also count the occurence of a selection of elements.
 
 ```{r CountChemicalElements2}
-CountChemicalElements(x = fml, ele = c("C", "Si", "T", "Cl"))
+CorMID::CountChemicalElements(x = fml, ele = c("C", "Si", "T", "Cl"))
 ```
 
 The elements with a significant amount of natural occurring isotopes are relevant to calculate the theoretical mass distribution vector (or rather matrix respectively) of the compound. In the above example, the relevant elements are effectively carbon and silicon. 
@@ -75,14 +75,14 @@ As we have 5 TMS groups, we need to consider in total 21 carbon (6 of biological
 
 ```{r CalcTheoreticalMDV1}
 fml <- "C21Si5"
-td <- CalcTheoreticalMDV(fml = fml)
+td <- CorMID::CalcTheoreticalMDV(fml = fml)
 round(td, 4)
 ```
 
 The first row of the matrix (M0) gives the relative amounts of all potential isotopes for C~21~Si~5~ assuming natural abundance conditions. The second row (M1) shows the relative amounts for isotopologue M1 (containing at least one ^13^C at any position). The final row (M6) shows the relative amounts when all biological carbon atoms are assumed to be ^13^C. The amount of biological carbon is estimated based on the amount of Si within the function (21 - 5 x 3 = 6). This might be overwritten by function parameters specifying the number of C of biological origin *nbio* and the number of measured ion signals above the detection limit *nmz*:
 
 ```{r CalcTheoreticalMDV2}
-round(CalcTheoreticalMDV(fml = fml, nbio = 21, nmz = 21)[-(5:19), -(5:19)], 4)
+round(CorMID::CalcTheoreticalMDV(fml = fml, nbio = 21, nmz = 21)[-(5:19), -(5:19)], 4)
 ```
 
 Further, the package contains the convenience function `recMID` to reconstruct a measured MID based on a given *corMID,* *r* and sum formula. `recMID` returns an object of the similarly named class to allow easy visualization by a class dependent plot method.
@@ -112,7 +112,7 @@ Lets start with an artificial Glucose spectrum where 10% is M6 labeled:
 
 ```{r CorMID1}
 fml <- "C21Si5"
-td1 <- CalcTheoreticalMDV(fml = fml, nbio = 6, nmz = 8)
+td1 <- CorMID::CalcTheoreticalMDV(fml = fml, nbio = 6, nmz = 8)
 bMID <- c(0.9, rep(0, 5), 0.1)
 md1 <- apply(td1*bMID, 2, sum)
 round(md1, 4)
@@ -121,7 +121,7 @@ round(md1, 4)
 **md1** represents the measured isotopologue distribution which is equivalent to the vector of measured intensity values normalized to the vector sum. Please note that the measured MID contains additional peaks at M+7 and M+8, caused by the natural abundant isotopes of carbon atoms attached during derivatization. Now we may use function `CorMID` to disentangle this vector.
 
 ```{r CorMID2}
-CorMID(int=md1, fml=fml, r=unlist(list("M+H"=1)))
+CorMID::CorMID(int=md1, fml=fml, r="M+H")
 ```
 
 Notice, that we allowed only [M+H] to be present in option *r*. The result is a labeled vector representing the corrected MID (or base MID) and attributes providing information on the fitting error *err* and the parameters *r*atio, *ratio_status* and *mid_status* as used in the function call. Please note that during the function call *mid* was estimated and *r*atio was fixed.
@@ -129,7 +129,7 @@ Notice, that we allowed only [M+H] to be present in option *r*. The result is a 
 We could achieve something similar testing for all currently defined fragments by omitting the *r* option:
 
 ```{r CorMID3}
-CorMID(int=md1, fml=fml)
+CorMID::CorMID(int=md1, fml=fml)
 ```
 
 Here, we essentially get the same result as before (except for *ratio* related attributes) because there is no superimposition in our test data. *ratio* was estimated and other possible adducts were tested but found to be of zero presence.  Now lets generate more difficult composite data **md2** to be fit by including a 20% proton loss (or "[M+]" or "M-1", respectively) on top of **md1**.
@@ -147,13 +147,13 @@ bMID <- c(0.9, rep(0, 5), 0.1)
 r <- list("M+H" = 0.8, "M+" = 0.2)
 rMID <- CorMID::recMID(mid = bMID, r = r, fml = fml)
 round(rMID, 4)
-plot(rMID, ylim=c(0,0.45))
+plot(rMID, ylim=c(0, 0.45))
 ```
 
 and let `CorMID` decompose this back...
 
 ```{r CorMID5}
-CorMID(int=md2, fml=fml)
+CorMID::CorMID(int=md2, fml=fml)
 ```
 
 which is pretty close to the truth. :)
